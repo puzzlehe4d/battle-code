@@ -41,7 +41,7 @@ var responds = function (io) {
         matchController.editOneWhenValid({
           challenge_id: challenge_id,
           github_handle: github_handle
-        });
+        }, matchController.assignEloRating);
       }
     }
     var socketMessage = {
@@ -54,7 +54,7 @@ var responds = function (io) {
     if (type === 'battle' || type === 'solo') {
       io.to('/#'+toSocket).emit('eval', socketMessage);
     } else if (type === 'pair') {
-      io.to('/#'+toSocket).emit('pair_eval', socketMessage);      
+      io.to('/#'+toSocket).emit('pair_eval', socketMessage);
     }
 
     // Keep listening
